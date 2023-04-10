@@ -14,6 +14,8 @@ import SearchForm from "./components/SearchForm";
 import Paginator from "./components/Paginator";
 
 function App() {
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
   const [items, setItems] = useState(null);
   const [page, setPage] = useState(1);
   const [alert, setAlert] = useState(null);
@@ -40,7 +42,7 @@ function App() {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:8000/garments/search/${query}?page=${page}`
+        `${apiUrl}/garments/search/${query}?page=${page}`
       );
 
       if (!response.ok) {
